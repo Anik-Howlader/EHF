@@ -257,7 +257,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 5vw;
             flex-wrap: wrap;
             margin-top: 12px;
             font-size: 12px;
@@ -266,7 +266,7 @@
         .footer-stat {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .footer-stat i {

@@ -214,7 +214,7 @@
                     </button>
                 </div>
             </div>
-        `, { maxWidth: 480 })
+        `, { maxWidth: 380 })
                     currentMarker.openPopup();
                 });
             }

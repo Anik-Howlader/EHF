@@ -177,30 +177,34 @@
 
         currentMarker = L.marker([location.lat, location.lng]).addTo(map)
     .bindPopup(`
-        <div class="popup-card">
-            ${location.image_url ? `
-                <div class="popup-image-wrapper">
-                    <img src="${location.image_url}" alt="${location.building}">
-                </div>
-            ` : ''}
+    <div class="popup-card">
+        ${location.image_url ? `
+            <div class="popup-image-wrapper">
+                <img src="${location.image_url}" alt="${location.building}">
 
+                <div class="popup-bottom-info">
+                    <h3>${location.building}</h3>
+                    <p>Floor ${location.floor} • Room ${location.room}</p>
+                </div>
+            </div>
+        ` : `
             <div class="popup-content">
                 <h3 class="popup-title">${location.building}</h3>
-
-                <div class="popup-details">
-                    <div><span>Floor</span><strong>${location.floor}</strong></div>
-                    <div><span>Room</span><strong>${location.room}</strong></div>
-                </div>
-
-                <button 
-                    type="button" 
-                    class="popup-btn" 
-                    onclick="getDirections(${location.lat}, ${location.lng})">
-                    Get Directions
-                </button>
+                <p>Floor ${location.floor} • Room ${location.room}</p>
             </div>
+        `}
+
+        <div class="popup-footer">
+            <button
+                type="button"
+                class="popup-btn"
+                onclick="getDirections(${location.lat}, ${location.lng})">
+                Get Directions
+            </button>
         </div>
-    `, { closeButton: true, maxWidth: 260 });
+    </div>
+`, { maxWidth: 280 });
+
 
 currentMarker.openPopup();
 

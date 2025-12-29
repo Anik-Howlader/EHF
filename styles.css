@@ -663,66 +663,60 @@ nav.active {
             }
         }
 
-        /* Leaflet popup container tweak */
-.leaflet-popup-content {
-    margin: 0;
-}
-
-/* Card */
-.popup-card {
+        .popup-card {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
 }
 
 /* Image */
+.popup-image-wrapper {
+    position: relative;
+}
+
 .popup-image-wrapper img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
-    background: #f3f4f6;
+    display: block;
 }
 
-/* Content */
-.popup-content {
-    padding: 14px 16px 16px;
-    background: #ffffff;
+/* Bottom info overlay */
+.popup-bottom-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 14px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.25),
+        transparent
+    );
+    color: #ffffff;
 }
 
-/* Title */
-.popup-title {
-    margin: 0 0 10px;
+.popup-bottom-info h3 {
+    margin: 0;
     font-size: 16px;
     font-weight: 600;
-    color: #111827;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
-/* Details grid */
-.popup-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 14px;
+.popup-bottom-info p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
-.popup-details div {
-    text-align: left;
-}
-
-.popup-details span {
-    display: block;
-    font-size: 11px;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
-}
-
-.popup-details strong {
-    font-size: 14px;
-    font-weight: 500;
-    color: #1f2937;
+/* Footer */
+.popup-footer {
+    padding: 12px 14px 14px;
+    background: #ffffff;
 }
 
 /* Button */
@@ -730,19 +724,15 @@ nav.active {
     width: 100%;
     padding: 9px 12px;
     background: #2563eb;
-    color: #ffffff;
+    color: white;
     border: none;
     border-radius: 8px;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+    transition: background 0.2s ease;
 }
 
 .popup-btn:hover {
     background: #1d4ed8;
-}
-
-.popup-btn:active {
-    transform: scale(0.98);
 }

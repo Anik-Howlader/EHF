@@ -196,13 +196,13 @@
                     <div class="popup-image-wrapper">
                         <img src="${location.image_url}" alt="${location.building}">
                         <div class="popup-bottom-info">
-                            <h3>${location.building}</h3>
+                            <h4>${location.building}</h4>
                             <p>Floor ${location.floor} • Room ${location.room}</p>
                         </div>
                     </div>
                 ` : `
                     <div class="popup-content">
-                        <h3 class="popup-title">${location.building}</h3>
+                        <h4 class="popup-title">${location.building}</h4>
                         <p>Floor ${location.floor} • Room ${location.room}</p>
                     </div>
                 `}

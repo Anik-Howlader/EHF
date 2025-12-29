@@ -161,7 +161,7 @@
                         start_roll: parseInt(values[0]),
                         end_roll: parseInt(values[1]),
                         building: values[2],
-                        floor: parseInt(values[3]),
+                        floor: values[3],
                         room: values[4],
                         lat: parseFloat(values[5]),
                         lng: parseFloat(values[6]),

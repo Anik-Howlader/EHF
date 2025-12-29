@@ -175,28 +175,22 @@
             if (value.length > 3) window.getLocation();
         }
 
-        window.getLocation = function () {
-    if (currentMarker) {
-        map.removeLayer(currentMarker);
-        currentMarker = null;
-    }
+        window.getLocation = function() {
+            if (currentMarker) map.removeLayer(currentMarker);
+            let inputRoll = parseInt(document.getElementById('idInput').value);
+            if (isNaN(inputRoll)) return;
 
-    const inputRoll = Number(document.getElementById('idInput').value);
-    if (!inputRoll) return;
+            const foundLocations = locations.filter(loc => inputRoll >= loc.start_roll && inputRoll <= loc.end_roll);
+            
+            if (foundLocations.length > 0) {
+                foundLocations.forEach(location => {
+                    map.setView([location.lat, location.lng], 10, {animate: true});
+                    setTimeout(() => {
+                        map.setView([location.lat, location.lng], 19, {animate: true});
+                    }, 500);
 
-    const foundLocations = locations.filter(loc =>
-        inputRoll >= Number(loc.start_roll) &&
-        inputRoll <= Number(loc.end_roll)
-    );
-
-    if (!foundLocations.length) return;
-
-    const location = foundLocations[0];
-
-    map.setView([location.lat, location.lng], 19, { animate: true });
-
-    currentMarker = L.marker([location.lat, location.lng]).addTo(map)
-        .bindPopup(`
+                    currentMarker = L.marker([location.lat, location.lng]).addTo(map)
+                        .bindPopup(`
             <div class="popup-card">
                 ${location.image_url ? `
                     <div class="popup-image-wrapper">
@@ -221,9 +215,10 @@
                 </div>
             </div>
         `, { maxWidth: 280 })
-        .openPopup();
-};
-
+                    currentMarker.openPopup();
+                });
+            }
+        };
 
         function getDirections(destLat, destLng) {
             if (navigator.geolocation) {

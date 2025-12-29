@@ -175,32 +175,35 @@
             if (value.length > 3) window.getLocation();
         }
 
-        window.getLocation = function() {
-            if (currentMarker) map.removeLayer(currentMarker);
-            let inputRoll = parseInt(document.getElementById('idInput').value);
-            if (isNaN(inputRoll)) return;
+        currentMarker = L.marker([location.lat, location.lng]).addTo(map)
+    .bindPopup(`
+        <div class="popup-card">
+            ${location.image_url ? `
+                <div class="popup-image-wrapper">
+                    <img src="${location.image_url}" alt="${location.building}">
+                </div>
+            ` : ''}
 
-            const foundLocations = locations.filter(loc => inputRoll >= loc.start_roll && inputRoll <= loc.end_roll);
-            
-            if (foundLocations.length > 0) {
-                foundLocations.forEach(location => {
-                    map.setView([location.lat, location.lng], 10, {animate: true});
-                    setTimeout(() => {
-                        map.setView([location.lat, location.lng], 19, {animate: true});
-                    }, 500);
+            <div class="popup-content">
+                <h3 class="popup-title">${location.building}</h3>
 
-                    currentMarker = L.marker([location.lat, location.lng]).addTo(map)
-                        .bindPopup(`
-                            ${location.image_url ? `<img src="${location.image_url}" alt="${location.building}" class="popup-image">` : ''}
-                            <b>Building:</b> <strong>${location.building}</strong><br>
-                            <b>Floor:</b> ${location.floor}<br>
-                            <b>Room:</b> ${location.room}<br>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="getDirections(${location.lat}, ${location.lng})">Get Directions</button>
-                        `);
-                    currentMarker.openPopup();
-                });
-            }
-        };
+                <div class="popup-details">
+                    <div><span>Floor</span><strong>${location.floor}</strong></div>
+                    <div><span>Room</span><strong>${location.room}</strong></div>
+                </div>
+
+                <button 
+                    type="button" 
+                    class="popup-btn" 
+                    onclick="getDirections(${location.lat}, ${location.lng})">
+                    Get Directions
+                </button>
+            </div>
+        </div>
+    `, { closeButton: true, maxWidth: 260 });
+
+currentMarker.openPopup();
+
 
         function getDirections(destLat, destLng) {
             if (navigator.geolocation) {

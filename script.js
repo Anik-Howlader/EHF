@@ -175,38 +175,54 @@
             if (value.length > 3) window.getLocation();
         }
 
-        currentMarker = L.marker([location.lat, location.lng]).addTo(map)
-    .bindPopup(`
-    <div class="popup-card">
-        ${location.image_url ? `
-            <div class="popup-image-wrapper">
-                <img src="${location.image_url}" alt="${location.building}">
+        window.getLocation = function () {
+    if (currentMarker) {
+        map.removeLayer(currentMarker);
+        currentMarker = null;
+    }
 
-                <div class="popup-bottom-info">
-                    <h3>${location.building}</h3>
-                    <p>Floor ${location.floor} • Room ${location.room}</p>
+    const inputRoll = Number(document.getElementById('idInput').value);
+    if (!inputRoll) return;
+
+    const foundLocations = locations.filter(loc =>
+        inputRoll >= Number(loc.start_roll) &&
+        inputRoll <= Number(loc.end_roll)
+    );
+
+    if (!foundLocations.length) return;
+
+    const location = foundLocations[0];
+
+    map.setView([location.lat, location.lng], 19, { animate: true });
+
+    currentMarker = L.marker([location.lat, location.lng]).addTo(map)
+        .bindPopup(`
+            <div class="popup-card">
+                ${location.image_url ? `
+                    <div class="popup-image-wrapper">
+                        <img src="${location.image_url}" alt="${location.building}">
+                        <div class="popup-bottom-info">
+                            <h3>${location.building}</h3>
+                            <p>Floor ${location.floor} • Room ${location.room}</p>
+                        </div>
+                    </div>
+                ` : `
+                    <div class="popup-content">
+                        <h3 class="popup-title">${location.building}</h3>
+                        <p>Floor ${location.floor} • Room ${location.room}</p>
+                    </div>
+                `}
+
+                <div class="popup-footer">
+                    <button class="popup-btn"
+                        onclick="getDirections(${location.lat}, ${location.lng})">
+                        Get Directions
+                    </button>
                 </div>
             </div>
-        ` : `
-            <div class="popup-content">
-                <h3 class="popup-title">${location.building}</h3>
-                <p>Floor ${location.floor} • Room ${location.room}</p>
-            </div>
-        `}
-
-        <div class="popup-footer">
-            <button
-                type="button"
-                class="popup-btn"
-                onclick="getDirections(${location.lat}, ${location.lng})">
-                Get Directions
-            </button>
-        </div>
-    </div>
-`, { maxWidth: 280 });
-
-
-currentMarker.openPopup();
+        `, { maxWidth: 280 })
+        .openPopup();
+};
 
 
         function getDirections(destLat, destLng) {

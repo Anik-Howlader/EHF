@@ -7,7 +7,7 @@
         };
 
  function showCard(type) {
-  const baseUrl = "https://script.google.com/macros/s/AKfycbxw6cfttop1dmj0PF_mwKb3CRmNd0m_9WHxcY4X42MqVxAm15Vk-h3NpBtyLZLrZUn5/exec";
+  const baseUrl = "https://script.google.com/macros/s/AKfycbzWuoz6_VqmeGa6wLVE6ZR_-v-tG0GcKHzz-4TfS-RDV9Ape9GoxktbIx1oWHMG_9_r/exec";
 
   const pages = {
     stall: {

@@ -30,35 +30,34 @@
                 </div>
                 <nav>
                     <ul class="nav-menu">
-                        <li class="nav-item">
-                            <button class="nav-link" onclick="window.showCard('stall')">
-                                <i class="bi bi-shop"></i>
-                                <span>HelpDesk</span>
-                            </button>
-                        </li>
-                       
-                        <li class="nav-item">
-                            <button class="nav-link" onclick="window.showCard('accommodation')">
-                                <i class="bi bi-house-door"></i>
-                                <span>Accommodation</span>
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" onclick="window.showCard('helpline')">
-                                <i class="bi bi-info"></i>
-                                <span>Rickshaw fares</span>
-                            </button>
-                        </li>
-                        
-                         <li class="nav-item">
-                            <button class="nav-link" onclick="window.showCard('helpline')">
-                                <i class="bi bi-telephone"></i>
-                                <span>Helpline</span>
-                            </button>
-                        </li>
-                                
-                    </ul>
-                    
+  <li class="nav-item">
+    <button class="nav-link" onclick="showCard('stall')">
+      <i class="bi bi-shop"></i>
+      <span>ICT Cell HelpDesk</span>
+    </button>
+  </li>
+
+  <li class="nav-item">
+    <button class="nav-link" onclick="showCard('accommodation')">
+      <i class="bi bi-house-door"></i>
+      <span>Accommodation</span>
+    </button>
+  </li>
+
+  <li class="nav-item">
+    <button class="nav-link" onclick="showCard('rickshaw')">
+      <i class="bi bi-info"></i>
+      <span>Rickshaw fares</span>
+    </button>
+  </li>
+
+  <li class="nav-item">
+    <button class="nav-link" onclick="showCard('helpline')">
+      <i class="bi bi-telephone"></i>
+      <span>Helpline</span>
+    </button>
+  </li>
+</ul>
                 </nav>
                 <button class="hamburger" onclick="window.toggleMenu()">
                     <i class="bi bi-list"></i>
@@ -107,21 +106,25 @@
         </div>
     </div>
 
-    <!-- Modal Card for Information -->
-    <div class="modal-overlay" id="modal">
-        <div class="card-container">
-            <div class="card-header">
-                <h2>
-                    <i id="cardIcon" class="bi"></i>
-                    <span id="cardTitleText">Information</span>
-                </h2>
-                <button class="card-close" onclick="window.closeCard()">×</button>
-            </div>
-            <div class="card-body" id="cardBody">
-                <!-- Content will be inserted here -->
-            </div>
-        </div>
+    <!-- Modal -->
+<div class="modal fade" id="contentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-0">
+        <iframe
+          id="modalFrame"
+          src=""
+          style="width:100%; height:80vh; border:none;"
+        ></iframe>
+      </div>
     </div>
+  </div>
+</div>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

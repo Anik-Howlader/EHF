@@ -6,120 +6,37 @@
             searchBar.classList.toggle('dropdown');
         };
 
-        window.closeCard = function() {
-            document.getElementById('modal').classList.remove('active');
-        };
+ function showCard(type) {
+  const baseUrl = "https://script.google.com/macros/s/AKfycbxw6cfttop1dmj0PF_mwKb3CRmNd0m_9WHxcY4X42MqVxAm15Vk-h3NpBtyLZLrZUn5/exec";
 
-        window.showCard = function(type) {
-            const cardData = {
-                stall: {
-                    icon: 'bi-shop',
-                    title: 'Stall Information',
-                    content: `
-                        <div class="info-section">
-                            <h3><i class="bi bi-book"></i> Library Stall</h3>
-                            <p><strong>Building:</strong> Central Library Building</p>
-                            <p><strong>Location:</strong> East Campus, near Engineering Building</p>
-                            <p><strong>Established:</strong> 1986</p>
-                            <div class="contact-item">
-                                <i class="bi bi-person"></i>
-                                <span><strong>Warden:</strong> <a href="tel:+8801234567891">+880-123-456-7891</a></span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span><a href="tel:+880-91-46101">+880-91-46101</a> (Hall Office)</span>
-                            </div>
-                            <p><strong>Facilities:</strong> WiFi, Generator backup, Common room, Study hall</p>
-                        </div>
-                        <div class="info-section">
-                            <h3><i class="bi bi-building"></i> Begum Rokeya Hall (Girls)</h3>
-                            <p><strong>Capacity:</strong> 350 students</p>
-                            <p><strong>Location:</strong> West Campus, near Medical Complex</p>
-                            <p><strong>Established:</strong> 1995</p>
-                            <div class="contact-item">
-                                <i class="bi bi-person"></i>
-                                <span><strong>Warden:</strong> <a href="tel:+8801234567892">+880-123-456-7892</a></span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span><a href="tel:+880-91-46102">+880-91-46102</a> (Hall Office)</span>
-                            </div>
-                            <p><strong>Facilities:</strong> WiFi, 24/7 Security, Counseling office, Prayer room</p>
-                        </div>
-                        <div class="info-section">
-                            <h3><i class="bi bi-star"></i> General Facilities</h3>
-                            <p>✓ 24-hour electricity backup</p>
-                            <p>✓ High-speed Internet & WiFi</p>
-                            <p>✓ Cafeteria services</p>
-                            <p>✓ 24/7 Medical facility</p>
-                            <p>✓ Laundry services</p>
-                            <p>✓ Recreation facilities</p>
-                            <p>✓ 24/7 Security</p>
-                        </div>
-                    `
-                },
-                contact: {
-                    icon: 'bi-envelope',
-                    title: 'Contact Information',
-                    content: `
-                        <div class="info-section">
-                            <h3><i class="bi bi-building"></i> Bangladesh Agricultural University</h3>
-                            <div class="contact-item">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>Mymensingh 2202, Bangladesh</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span><a href="tel:+880-91-46000">+880-91-46000</a> (General)</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span><a href="tel:+880-91-46001">+880-91-46001</a> (Admissions)</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-envelope"></i>
-                                <span><a href="mailto:info@bau.edu.bd">info@bau.edu.bd</a></span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-globe"></i>
-                                <span><a href="https://www.bau.edu.bd" target="_blank">www.bau.edu.bd</a></span>
-                            </div>
-                        </div>
-                        <div class="info-section">
-                            <h3><i class="bi bi-code"></i> Department of Bioinformatics</h3>
-                            <div class="contact-item">
-                                <i class="bi bi-building"></i>
-                                <span>Engineering Building, Floor 3</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span><a href="tel:+880-91-65432">+880-91-65432</a></span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-envelope"></i>
-                                <span><a href="mailto:bioinformatics@bau.edu.bd">bioinformatics@bau.edu.bd</a></span>
-                            </div>
-                        </div>
-                        <div class="info-section">
-                            <h3><i class="bi bi-clock"></i> Office Hours</h3>
-                            <p><strong>Monday - Thursday:</strong> 9:00 AM - 5:00 PM</p>
-                            <p><strong>Friday:</strong> 9:00 AM - 4:00 PM</p>
-                            <p><strong>Saturday:</strong> 9:00 AM - 1:00 PM</p>
-                            <p><strong>Sunday:</strong> Closed</p>
-                        </div>
-                    `
-                }
-            };
+  const pages = {
+    stall: {
+      title: "ICT Cell HelpDesk",
+      url: `${baseUrl}?sheet=ICT`
+    },
+    accommodation: {
+      title: "Accommodation",
+      url: `${baseUrl}?sheet=Accommodation`
+    },
+    rickshaw: {
+      title: "Rickshaw Fares",
+      url: `${baseUrl}?sheet=Rickshaw`
+    },
+    helpline: {
+      title: "Helpline",
+      url: `${baseUrl}?sheet=Helpline`
+    }
+  };
 
-            if (cardData[type]) {
-                document.getElementById('cardIcon').className = 'bi ' + cardData[type].icon;
-                document.getElementById('cardTitleText').textContent = cardData[type].title;
-                document.getElementById('cardBody').innerHTML = cardData[type].content;
-                document.getElementById('modal').classList.add('active');
-                document.querySelector('nav').classList.remove('active');
-                document.querySelector('.search-bar').classList.remove('dropdown');
-            }
-        };
+  document.getElementById("modalTitle").textContent = pages[type].title;
+  document.getElementById("modalFrame").src = pages[type].url;
+
+  const modal = new bootstrap.Modal(document.getElementById("contentModal"));
+  modal.show();
+}
+
+
+
 
         // Initialize map
         let map = L.map('map', {

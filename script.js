@@ -181,9 +181,6 @@
             if (e.key === 'Enter') window.getLocation();
         });
 
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) window.closeCard();
-        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});

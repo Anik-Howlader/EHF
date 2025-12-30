@@ -14,10 +14,6 @@
       title: "ICT Cell HelpDesk",
       url: `${baseUrl}?sheet=ICT`
     },
-    accommodation: {
-      title: "Accommodation",
-      url: `${baseUrl}?sheet=Accommodation`
-    },
     rickshaw: {
       title: "Rickshaw Fares",
       url: `${baseUrl}?sheet=Rickshaw`

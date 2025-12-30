@@ -181,8 +181,3 @@
             if (e.key === 'Enter') window.getLocation();
         });
 
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
-            document.getElementById('lastUpdated').textContent = `28 Dec, 2025`;
-        });

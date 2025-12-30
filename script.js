@@ -6,56 +6,45 @@
             searchBar.classList.toggle('dropdown');
         };
 
-function showCard(type) {
-  const baseUrl = "https://script.google.com/macros/s/AKfycbwaH7irap5OtDSpS_SS7PtENZIe4OMIr05Dxd4-U-C6YzL_JuURwvU-2OtdXns0gte4/exec";
 
+function showCard(type) {
   const pages = {
-    stall: {
-      title: "ICT Cell HelpDesk",
-      url: `${baseUrl}?sheet=ICT`
-    },
     rickshaw: {
       title: "Rickshaw Fares",
-      imageUrl: "https://example.com/rickshaw-fares.jpg" 
+      content: `<img src="rickshaw_fare_image.jpg" alt="Rickshaw Fares" class="img-fluid">`
+    },
+    stall: {
+      title: "ICT Cell HelpDesk",
+      content: `
+        <p>Email: icthelp@domain.com</p>
+        <p>Phone: +91-1234567890</p>
+        <p>Office Hours: 9 AM - 5 PM</p>
+      `
     },
     helpline: {
-      title: "Helpline",
-      url: `${baseUrl}?sheet=Helpline`
+      title: "Helpline Contacts",
+      content: `
+        <ul>
+          <li>North Zone: 111-222-3333</li>
+          <li>South Zone: 444-555-6666</li>
+          <li>East Zone: 777-888-9999</li>
+          <li>West Zone: 000-123-4567</li>
+        </ul>
+      `
     }
   };
 
-  const card = pages[type];
-  const container = document.getElementById("cardContainer"); 
-  container.innerHTML = ""; 
+  const modalTitle = document.getElementById("modalTitle");
+  const modalBody = document.getElementById("modalBody");
+  const modalEl = document.getElementById("contentModal");
 
-  const titleEl = document.createElement("h2");
-  titleEl.textContent = card.title;
-  container.appendChild(titleEl);
+  if (!pages[type]) return console.error("Invalid type");
 
-  if (card.imageUrl) {
-    const imgEl = document.createElement("img");
-    imgEl.src = card.imageUrl;
-    imgEl.alt = card.title;
-    imgEl.style.maxWidth = "100%";
-    container.appendChild(imgEl);
-  } else if (card.url) {
-    const iframeEl = document.createElement("iframe");
-    iframeEl.src = card.url;
-    iframeEl.width = "100%";
-    iframeEl.height = "500px";
+  modalTitle.innerHTML = pages[type].title;
+  modalBody.innerHTML = pages[type].content;
 
-    // Handle errors in loading the iframe
-    iframeEl.onerror = function () {
-      container.innerHTML = `<h2>${card.title}</h2><p>Coming Soon....</p>`;
-    };
-
-    container.appendChild(iframeEl);
-  }
+  new bootstrap.Modal(modalEl).show();
 }
-
-
-
-
 
 
 

@@ -6,7 +6,7 @@
             searchBar.classList.toggle('dropdown');
         };
 
- function showCard(type) {
+function showCard(type) {
   const baseUrl = "https://script.google.com/macros/s/AKfycbwaH7irap5OtDSpS_SS7PtENZIe4OMIr05Dxd4-U-C6YzL_JuURwvU-2OtdXns0gte4/exec";
 
   const pages = {
@@ -16,7 +16,7 @@
     },
     rickshaw: {
       title: "Rickshaw Fares",
-      url: `${baseUrl}?sheet=Rickshaw`
+      imageUrl: "https://example.com/rickshaw-fares.jpg" 
     },
     helpline: {
       title: "Helpline",
@@ -24,20 +24,37 @@
     }
   };
 
-  const modalTitle = document.getElementById("modalTitle");
-  const modalFrame = document.getElementById("modalFrame");
-  const modalEl = document.getElementById("contentModal");
+  const card = pages[type];
+  const container = document.getElementById("cardContainer"); 
+  container.innerHTML = ""; 
 
-  if (!modalTitle || !modalFrame || !modalEl) {
-    console.error("Modal elements missing");
-    return;
+  const titleEl = document.createElement("h2");
+  titleEl.textContent = card.title;
+  container.appendChild(titleEl);
+
+  if (card.imageUrl) {
+    const imgEl = document.createElement("img");
+    imgEl.src = card.imageUrl;
+    imgEl.alt = card.title;
+    imgEl.style.maxWidth = "100%";
+    container.appendChild(imgEl);
+  } else if (card.url) {
+    const iframeEl = document.createElement("iframe");
+    iframeEl.src = card.url;
+    iframeEl.width = "100%";
+    iframeEl.height = "500px";
+
+    // Handle errors in loading the iframe
+    iframeEl.onerror = function () {
+      container.innerHTML = `<h2>${card.title}</h2><p>Coming Soon....</p>`;
+    };
+
+    container.appendChild(iframeEl);
   }
-
-  modalTitle.textContent = pages[type].title;
-  modalFrame.src = pages[type].url;
-
-  new bootstrap.Modal(modalEl).show();
 }
+
+
+
 
 
 

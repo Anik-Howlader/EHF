@@ -9,27 +9,26 @@
 
 function showCard(type) {
   const pages = {
-    rickshaw: {
-      title: "Rickshaw Fares",
-      content: `<img src="rickshaw_fare_image.jpg" alt="Rickshaw Fares" class="img-fluid">`
-    },
     stall: {
       title: "ICT Cell HelpDesk",
       content: `
-        <p>Email: icthelp@domain.com</p>
-        <p>Phone: +91-1234567890</p>
-        <p>Office Hours: 9 AM - 5 PM</p>
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFvRj9-ZlYHM_z1FMo0At69ItLot2asoT5RWFDpld19tQoKJoUcPrcIYC0nPf4t6nt6jYvAHL6WgsL/pubhtml?widget=true&headers=false"
+          width="100%"
+          height="450"
+          frameborder="0">
+        </iframe>
       `
     },
     helpline: {
-      title: "Helpline Contacts",
+      title: "Helpline",
       content: `
-        <ul>
-          <li>North Zone: 111-222-3333</li>
-          <li>South Zone: 444-555-6666</li>
-          <li>East Zone: 777-888-9999</li>
-          <li>West Zone: 000-123-4567</li>
-        </ul>
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFvRj9-ZlYHM_z1FMo0At69ItLot2asoT5RWFDpld19tQoKJoUcPrcIYC0nPf4t6nt6jYvAHL6WgsL/pubhtml?widget=true&headers=false"
+          width="100%"
+          height="450"
+          frameborder="0">
+        </iframe>
       `
     }
   };
@@ -38,7 +37,7 @@ function showCard(type) {
   const modalBody = document.getElementById("modalBody");
   const modalEl = document.getElementById("contentModal");
 
-  if (!pages[type]) return console.error("Invalid type");
+  if (!pages[type]) return;
 
   modalTitle.innerHTML = pages[type].title;
   modalBody.innerHTML = pages[type].content;

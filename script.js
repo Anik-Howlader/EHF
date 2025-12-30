@@ -24,12 +24,21 @@
     }
   };
 
-  document.getElementById("modalTitle").textContent = pages[type].title;
-  document.getElementById("modalFrame").src = pages[type].url;
+  const modalTitle = document.getElementById("modalTitle");
+  const modalFrame = document.getElementById("modalFrame");
+  const modalEl = document.getElementById("contentModal");
 
-  const modal = new bootstrap.Modal(document.getElementById("contentModal"));
-  modal.show();
+  if (!modalTitle || !modalFrame || !modalEl) {
+    console.error("Modal elements missing");
+    return;
+  }
+
+  modalTitle.textContent = pages[type].title;
+  modalFrame.src = pages[type].url;
+
+  new bootstrap.Modal(modalEl).show();
 }
+
 
 
 
